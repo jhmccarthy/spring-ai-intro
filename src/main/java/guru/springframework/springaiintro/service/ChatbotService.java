@@ -1,13 +1,12 @@
 package guru.springframework.springaiintro.service;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import guru.springframework.springaiintro.model.ChatRequest;
 import guru.springframework.springaiintro.model.ChatResponse;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
+import org.springframework.ai.converter.BeanOutputConverter;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -20,17 +19,16 @@ import java.util.UUID;
 @Slf4j
 public class ChatbotService {
     private final ChatClient chatClient;
-    private final ObjectMapper objectMapper;
+    private final Resource getCapitalPrompt;
+    private final Resource getCapitalWithInfo;
 
-    @Value("classpath:prompts/get-capital-prompt.st")
-    private Resource getCapitalPrompt;
-
-    @Value("classpath:prompts/get-capital-with-info-prompt.st")
-    private Resource getCapitalWithInfo;
-
-    public ChatbotService(ChatClient chatClient, ObjectMapper objectMapper) {
+    public ChatbotService(ChatClient chatClient,
+                          @Value("classpath:prompts/get-capital-prompt.st") Resource getCapitalPrompt,
+                          @Value("classpath:prompts/get-capital-with-info-prompt.st") Resource getCapitalWithInfo
+    ) {
         this.chatClient = chatClient;
-        this.objectMapper = objectMapper;
+        this.getCapitalPrompt = getCapitalPrompt;
+        this.getCapitalWithInfo = getCapitalWithInfo;
     }
 
     public ChatResponse chat(ChatRequest chatRequest) {
@@ -65,22 +63,27 @@ public class ChatbotService {
      * @return the answer
      */
     public ChatResponse getCapital(ChatRequest chatRequest) {
+        var converter = new BeanOutputConverter<>(ChatResponse.class);
+        var format = converter.getFormat();
+
         var promptTemplate = new PromptTemplate(getCapitalPrompt);
-        var prompt = promptTemplate.create(Map.of("stateOrCountry", chatRequest.question()));
+        var prompt = promptTemplate.create(
+                Map.of(
+                        "stateOrCountry", chatRequest.question(),
+                        "format", format
+                )
+        );
 
         var response = chat(chatRequest, prompt);
         log.info("Response: {}", response.answer());
 
-        String jsonString;
+        var convertedResponse = converter.convert(response.answer());
 
-        try {
-            var jsonNode = objectMapper.readTree(response.answer());
-            jsonString = jsonNode.get("answer").asText();
-        } catch (JsonProcessingException e) {
-            throw new RuntimeException(e);
+        if(convertedResponse == null) {
+            throw new RuntimeException("No response received");
         }
 
-        return new ChatResponse(response.chatId(), jsonString);
+        return convertedResponse;
     }
 
     /**

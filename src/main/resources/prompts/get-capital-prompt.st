@@ -1,1 +1,2 @@
-What is the capital of {stateOrCountry}? Response in JSON with the name of the city in a property named `answer`. Do not include markdown code blocks in your response.
+What is the capital of {stateOrCountry}? {format}
+Do not include markdown code blocks in your response.
