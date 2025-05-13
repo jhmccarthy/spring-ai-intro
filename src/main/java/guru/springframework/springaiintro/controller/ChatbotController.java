@@ -14,18 +14,8 @@ public class ChatbotController {
         this.chatbotService = chatbotService;
     }
 
-    @PostMapping("/api/ask")
-    public ChatResponse askQuestion(@RequestBody ChatRequest chatRequest) {
+    @PostMapping("/api/request")
+    public ChatResponse request(@RequestBody ChatRequest chatRequest) {
         return chatbotService.chat(chatRequest);
-    }
-
-    @PostMapping("/api/capital")
-    public ChatResponse getCapital(@RequestBody ChatRequest chatRequest) {
-        return chatbotService.getCapital(chatRequest);
-    }
-
-    @PostMapping("/api/capitalWithInfo")
-    public ChatResponse getCapitalWithInfo(@RequestBody ChatRequest chatRequest) {
-        return chatbotService.getCapital(chatRequest);
     }
 }

@@ -2,14 +2,38 @@ spring:
   application:
     name: spring-ai-intro
   ai:
-    model.chat: anthropic
+    model:
+      # These values must be one of the listed LLMs below
+      chat: anthropic
+      # Spring AI doesn't support an Anthropic embedding model.
+      # Use OpenAI or Ollama's embedding model. Need to rebuild the vector store when switching
+      embedding: openai
     openai:
       api-key: ${OPENAI_API_KEY}
       chat:
         options:
           model: gpt-4o-mini
+      embedding:
+        options:
+          model: text-embedding-3-small
     anthropic:
       api-key: ${ANTHROPIC_API_KEY}
       chat:
         options:
           model: claude-3-7-sonnet-latest
+    ollama:
+      base-url: http://localhost:11434
+      chat:
+        options:
+          model: llama3.2
+      embedding:
+        options:
+          enabled: true
+          model: nomic-embed-text
+
+sfg:
+  ai-app:
+    vectorStorePath: /temp/vectorStore.json
+    # the trimmed csv file removed a lot of extra fields to refine the search criteria
+    documentsToLoad:
+      - classpath:/movies500Trimmed.csv

@@ -1,5 +1,7 @@
 package guru.springframework.springaiintro.service;
 
+import guru.springframework.springaiintro.model.CapitalResponse;
+import guru.springframework.springaiintro.model.CapitalWithInfoResponse;
 import guru.springframework.springaiintro.model.ChatRequest;
 import guru.springframework.springaiintro.model.ChatResponse;
 import lombok.extern.slf4j.Slf4j;
@@ -20,15 +22,13 @@ import java.util.UUID;
 public class ChatbotService {
     private final ChatClient chatClient;
     private final Resource getCapitalPrompt;
-    private final Resource getCapitalWithInfo;
 
-    public ChatbotService(ChatClient chatClient,
-                          @Value("classpath:prompts/get-capital-prompt.st") Resource getCapitalPrompt,
-                          @Value("classpath:prompts/get-capital-with-info-prompt.st") Resource getCapitalWithInfo
+    public ChatbotService(
+            ChatClient chatClient,
+            @Value("classpath:prompts/get-capital-prompt.st") Resource getCapitalPrompt
     ) {
         this.chatClient = chatClient;
         this.getCapitalPrompt = getCapitalPrompt;
-        this.getCapitalWithInfo = getCapitalWithInfo;
     }
 
     public ChatResponse chat(ChatRequest chatRequest) {
@@ -62,8 +62,8 @@ public class ChatbotService {
      * @param chatRequest the state or country request
      * @return the answer
      */
-    public ChatResponse getCapital(ChatRequest chatRequest) {
-        var converter = new BeanOutputConverter<>(ChatResponse.class);
+    public CapitalResponse getCapital(ChatRequest chatRequest) {
+        var converter = new BeanOutputConverter<>(CapitalResponse.class);
         var format = converter.getFormat();
 
         var promptTemplate = new PromptTemplate(getCapitalPrompt);
@@ -74,16 +74,18 @@ public class ChatbotService {
                 )
         );
 
-        var response = chat(chatRequest, prompt);
-        log.info("Response: {}", response.answer());
+        var answer = chatClient
+                .prompt(prompt)
+                .user(chatRequest.question())
+                .call()
+                .content();
+        log.info("Response: {}", answer);
 
-        var convertedResponse = converter.convert(response.answer());
-
-        if(convertedResponse == null) {
+        if (answer == null) {
             throw new RuntimeException("No response received");
         }
 
-        return convertedResponse;
+        return converter.convert(answer);
     }
 
     /**
@@ -92,10 +94,29 @@ public class ChatbotService {
      * @param chatRequest the state or country request
      * @return the answer
      */
-    public ChatResponse getCapitalWithInfo(ChatRequest chatRequest) {
-        var promptTemplate = new PromptTemplate(getCapitalWithInfo);
-        var prompt = promptTemplate.create(Map.of("stateOrCountry", chatRequest.question()));
+    public CapitalWithInfoResponse getCapitalWithInfo(ChatRequest chatRequest) {
+        var converter = new BeanOutputConverter<>(CapitalWithInfoResponse.class);
+        var format = converter.getFormat();
 
-        return chat(chatRequest, prompt);
+        var promptTemplate = new PromptTemplate(getCapitalPrompt);
+        var prompt = promptTemplate.create(
+                Map.of(
+                        "stateOrCountry", chatRequest.question(),
+                        "format", format
+                )
+        );
+
+        var answer = chatClient
+                .prompt(prompt)
+                .user(chatRequest.question())
+                .call()
+                .content();
+        log.info("Response: {}", answer);
+
+        if (answer == null) {
+            throw new RuntimeException("No response received");
+        }
+
+        return converter.convert(answer);
     }
 }
