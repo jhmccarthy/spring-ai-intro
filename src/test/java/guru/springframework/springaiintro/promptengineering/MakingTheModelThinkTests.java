@@ -117,35 +117,27 @@ class MakingTheModelThinkTests extends BaseTest {
                 Map.of("text", STORY)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
     void incorrectPrompt() {
         var promptTemplate = new PromptTemplate(PROMPT_2_INCORRECT);
 
-        System.out.println(
-                chatModel.call(promptTemplate.create()).getResult().getOutput().getText()
-        );
+        chat(promptTemplate.create());
     }
 
     @Test
     void correctPrompt() {
         var promptTemplate = new PromptTemplate(PROMPT_3_CORRECT);
 
-        System.out.println(
-                chatModel.call(promptTemplate.create()).getResult().getOutput().getText()
-        );
+        chat(promptTemplate.create());
     }
 
     @Test
     void theBallPrompt() {
         var promptTemplate = new PromptTemplate(PROMPT_4);
 
-        System.out.println(
-                chatModel.call(promptTemplate.create()).getResult().getOutput().getText()
-        );
+        chat(promptTemplate.create());
     }
 }

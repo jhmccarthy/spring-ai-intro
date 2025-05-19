@@ -9,7 +9,7 @@ import org.springframework.core.io.Resource;
 import java.util.List;
 
 @Configuration
-@ConfigurationProperties(prefix = "sfg.ai-app")
+@ConfigurationProperties(prefix = "ai-app")
 @Getter
 @Setter
 public class VectorStoreProperties {

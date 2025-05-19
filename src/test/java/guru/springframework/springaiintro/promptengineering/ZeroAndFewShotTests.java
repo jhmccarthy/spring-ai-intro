@@ -1,5 +1,6 @@
 package guru.springframework.springaiintro.promptengineering;
 
+import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Test;
 import org.springframework.ai.chat.prompt.ChatOptions;
 import org.springframework.ai.chat.prompt.Prompt;
@@ -10,6 +11,7 @@ import java.util.Map;
 import java.util.UUID;
 
 @SpringBootTest
+@Slf4j
 class ZeroAndFewShotTests extends BaseTest {
     private static final String REVIEW = """
             I get it. Everyone is buying these now after years of not caring about Stanley tumblers because of social media. The problem with viral crap like this is we get caught up in fitting in and jumping on the band wagon that we fail to see what's wrong with a product before buying it.
@@ -63,10 +65,8 @@ class ZeroAndFewShotTests extends BaseTest {
                     )
             );
 
-            var response = chatModel.call(prompt);
-
-            System.out.println("#################################\n");
-            System.out.println(response.getResult().getOutput().getText());
+            log.info("#################################\n");
+            chat(prompt);
         }
     }
 
@@ -88,10 +88,8 @@ class ZeroAndFewShotTests extends BaseTest {
                     chatOptions
             );
 
-            System.out.println("#################################\n");
-            System.out.println(
-                    chatModel.call(prompt).getResult().getOutput().getText()
-            );
+            log.info("#################################\n");
+            chat(prompt);
         }
     }
 
@@ -99,27 +97,21 @@ class ZeroAndFewShotTests extends BaseTest {
     void whatPuPromptFewShot() {
         var promptTemplate = new PromptTemplate(WHATPU_PROMPT);
 
-        System.out.println(
-                chatModel.call(promptTemplate.create()).getResult().getOutput().getText()
-        );
+        chat(promptTemplate.create());
     }
 
     @Test
     void vacationFewShot() {
         var promptTemplate = new PromptTemplate(VACATION_PROMPT);
 
-        System.out.println(
-                chatModel.call(promptTemplate.create()).getResult().getOutput().getText()
-        );
+        chat(promptTemplate.create());
     }
 
     @Test
     void mathPromptFewShot() {
         var promptTemplate = new PromptTemplate(MATH_PROMPT);
 
-        System.out.println(
-                chatModel.call(promptTemplate.create()).getResult().getOutput().getText()
-        );
+        chat(promptTemplate.create());
     }
 
     @Test
@@ -129,8 +121,6 @@ class ZeroAndFewShotTests extends BaseTest {
                         "Denali Advanced Toothbrush by GMC."
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 }

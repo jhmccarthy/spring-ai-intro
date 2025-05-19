@@ -8,7 +8,7 @@ import java.util.Map;
 
 @SpringBootTest
 class GiveClearInstructionsTests extends BaseTest {
-    //ask the model to check if conditions are satisfied
+    // ask the model to check if conditions are satisfied
     private static final String DIRECTIONS_PROMPT = """
             You will be provided with text delimited by triple quotes.
             If it contains a sequence of instructions,
@@ -46,7 +46,7 @@ class GiveClearInstructionsTests extends BaseTest {
                 with the following attributes: make, model, year, and color. Return the JSON string.
                 """;
 
-        System.out.println(chat(prompt));
+        chat(prompt);
     }
 
     //xml
@@ -57,7 +57,7 @@ class GiveClearInstructionsTests extends BaseTest {
                 with the following attributes: make, model, year, and color. Return the XML string.
                 """;
 
-        System.out.println(chat(prompt));
+        chat(prompt);
     }
 
     //yaml
@@ -68,7 +68,7 @@ class GiveClearInstructionsTests extends BaseTest {
                 with the following attributes: make, model, year, and color. Return the YAML string.
                 """;
 
-        System.out.println(chat(prompt));
+        chat(prompt);
     }
 
     @Test
@@ -78,9 +78,7 @@ class GiveClearInstructionsTests extends BaseTest {
                 Map.of("text_1", COOK_A_STEAK)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -90,9 +88,7 @@ class GiveClearInstructionsTests extends BaseTest {
                 Map.of("text_1", BOOK_DESCRIPTION)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -102,9 +98,7 @@ class GiveClearInstructionsTests extends BaseTest {
                 Map.of("text_1", COOK_A_STEAK)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -114,8 +108,6 @@ class GiveClearInstructionsTests extends BaseTest {
                 Map.of("text_1", COOK_A_STEAK)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 }

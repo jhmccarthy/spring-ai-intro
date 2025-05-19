@@ -26,7 +26,7 @@ public class ChatClientConfig {
         var client = ChatClient
                 .builder(chatModel)
                 .defaultSystem(systemPrompt)
-                .defaultAdvisors(new MessageChatMemoryAdvisor(chatMemory));
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build());
         // @formatter:on
 
         return client.build();

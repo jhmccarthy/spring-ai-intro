@@ -122,9 +122,7 @@ class InferenceTests extends BaseTest {
                         "review6", REVIEW_6)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @DisplayName("Testing Emotion")
@@ -140,9 +138,7 @@ class InferenceTests extends BaseTest {
                         "review6", REVIEW_6)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @DisplayName("Testing for Anger")
@@ -158,9 +154,7 @@ class InferenceTests extends BaseTest {
                         "review6", REVIEW_6)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @DisplayName("Inferring for Topics")
@@ -171,8 +165,6 @@ class InferenceTests extends BaseTest {
                 Map.of("story", STORY)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 }

@@ -17,10 +17,30 @@ class ChatbotControllerTest {
     private MockMvc mvc;
 
     @Test
-    void askQuestion() throws Exception {
+    void chat() throws Exception {
         var question = "{ \"question\": \"A question for\"}";
 
-        mvc.perform(post("/api/ask")
+        mvc.perform(post("/api/request")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(question))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void ragChat() throws Exception {
+        var question = "{ \"question\": \"A question for\"}";
+
+        mvc.perform(post("/api/rag-request")
+                        .contentType(MediaType.APPLICATION_JSON)
+                        .content(question))
+                .andExpect(status().isOk());
+    }
+
+    @Test
+    void getCountry() throws Exception {
+        var question = "{ \"question\": \"A question for\"}";
+
+        mvc.perform(post("/api/country")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(question))
                 .andExpect(status().isOk());

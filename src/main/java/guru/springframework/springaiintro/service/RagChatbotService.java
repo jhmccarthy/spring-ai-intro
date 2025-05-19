@@ -8,6 +8,7 @@ import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
+import org.springframework.ai.vectorstore.VectorStore;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -21,7 +22,7 @@ import java.util.UUID;
 @Slf4j
 public class RagChatbotService {
     private final ChatClient chatClient;
-    private final SimpleVectorStore vectorStore;
+    private final VectorStore vectorStore;
     private final Resource ragPrompt;
 
     public RagChatbotService(

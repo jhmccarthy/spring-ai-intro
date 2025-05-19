@@ -32,15 +32,13 @@ public class UsingSystemMessagesTests extends BaseTest {
         var systemMessage = systemPromptTemplate.createMessage();
 
         var promptTemplate = new PromptTemplate("Tell me about New Orleans.");
-        var userMessage2 = promptTemplate.createMessage();
+        var userMessage = promptTemplate.createMessage();
 
         var prompt = new Prompt(
-                List.of(systemMessage, userMessage2)
+                List.of(systemMessage, userMessage)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -53,15 +51,13 @@ public class UsingSystemMessagesTests extends BaseTest {
         var systemMessage = systemPromptTemplate.createMessage();
 
         var promptTemplate = new PromptTemplate("Tell me about Key West.");
-        var userMessage2 = promptTemplate.createMessage();
+        var userMessage = promptTemplate.createMessage();
 
         var prompt = new Prompt(
-                List.of(systemMessage, userMessage2)
+                List.of(systemMessage, userMessage)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -74,15 +70,13 @@ public class UsingSystemMessagesTests extends BaseTest {
         var systemMessage = systemPromptTemplate.createMessage();
 
         var promptTemplate = new PromptTemplate(COOK_A_STEAK);
-        var userMessage2 = promptTemplate.createMessage();
+        var userMessage = promptTemplate.createMessage();
 
         var prompt = new Prompt(
-                List.of(systemMessage, userMessage2)
+                List.of(systemMessage, userMessage)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -95,14 +89,12 @@ public class UsingSystemMessagesTests extends BaseTest {
         var systemMessage = systemPromptTemplate.createMessage();
 
         var promptTemplate = new PromptTemplate(COOK_A_STEAK);
-        var userMessage2 = promptTemplate.createMessage();
+        var userMessage = promptTemplate.createMessage();
 
         var prompt = new Prompt(
-                List.of(systemMessage, userMessage2)
+                List.of(systemMessage, userMessage)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 }

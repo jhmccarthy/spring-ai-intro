@@ -88,9 +88,7 @@ class SummarizingPromptsTests extends BaseTest {
                 Map.of("review", REVIEW_1)
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -104,9 +102,7 @@ class SummarizingPromptsTests extends BaseTest {
                 )
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 
     @Test
@@ -120,8 +116,6 @@ class SummarizingPromptsTests extends BaseTest {
                 )
         );
 
-        System.out.println(
-                chatModel.call(prompt).getResult().getOutput().getText()
-        );
+        chat(prompt);
     }
 }

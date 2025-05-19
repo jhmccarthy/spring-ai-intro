@@ -1,20 +1,40 @@
 package guru.springframework.springaiintro.promptengineering;
 
-import org.springframework.ai.chat.model.ChatModel;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
+@Slf4j
 class BaseTest {
     @Autowired
-    ChatModel chatModel;
+    protected ChatClient chatClient;
 
     protected String chat(String prompt) {
-        PromptTemplate promptTemplate = new PromptTemplate(prompt);
-        Prompt promptToSend = promptTemplate.create();
+        var promptTemplate = new PromptTemplate(prompt);
+        var promptToSend = promptTemplate.create();
 
-        return chatModel.call(promptToSend).getResult().getOutput().getText();
+        var response = chatClient
+                .prompt(promptToSend)
+                .call()
+                .content();
+
+        log.info("Chat response: {}", response);
+
+        return response;
+    }
+
+    protected String chat(Prompt prompt) {
+        var response = chatClient
+                .prompt(prompt)
+                .call()
+                .content();
+
+        log.info("Chat response: {}", response);
+
+        return response;
     }
 }
