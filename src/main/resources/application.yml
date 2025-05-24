@@ -1,6 +1,6 @@
 spring:
   application:
-    name: spring-ai-intro
+    name: spring-ai-demo
   ai:
     model:
       # These values must be one of the listed LLMs below

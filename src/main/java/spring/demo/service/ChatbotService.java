@@ -24,6 +24,12 @@ public class ChatbotService {
     private final ChatClient chatClient;
     private final Resource getCapitalPrompt;
 
+    /**
+     * Default constructor used for Spring dependency injection.
+     *
+     * @param chatClient the chat client
+     * @param getCapitalPrompt the prompt string for the {@code getCapital} request
+     */
     public ChatbotService(
             @Qualifier("chatClientWithPersonality") ChatClient chatClient,
             @Value("classpath:prompts/get-capital-prompt.st") Resource getCapitalPrompt

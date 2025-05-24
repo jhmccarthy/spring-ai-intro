@@ -26,6 +26,13 @@ public class RagChatbotService {
     private final VectorStore vectorStore;
     private final Resource ragPrompt;
 
+    /**
+     * Default constructor used for Spring dependency injection.
+     *
+     * @param chatClient the chat client
+     * @param vectorStore the vector store that will hold the documents
+     * @param ragPrompt the prompt string for the chat client
+     */
     public RagChatbotService(
             @Qualifier("chatClient") ChatClient chatClient,
             SimpleVectorStore vectorStore,

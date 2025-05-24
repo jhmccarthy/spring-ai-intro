@@ -13,6 +13,11 @@ public class CountryServiceFunction implements Function<CountryRequest, CountryR
 
     private final String apiNinjaKey;
 
+    /**
+     * Default constructor used for Spring dependency injection.
+     *
+     * @param apiNinjaKey the key for accessing the API Ninjas services
+     */
     public CountryServiceFunction(String apiNinjaKey) {
         this.apiNinjaKey = apiNinjaKey;
     }

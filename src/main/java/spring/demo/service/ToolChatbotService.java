@@ -26,6 +26,11 @@ public class ToolChatbotService {
     @Value("${ai-app.api-ninjas-key}")
     private final String apiNinjasKey = System.getenv("API_NINJAS_KEY");
 
+    /**
+     * Default constructor used for Spring dependency injection.
+     *
+     * @param chatClient the chat client
+     */
     public ToolChatbotService(
             @Qualifier("chatClient") ChatClient chatClient
     ) {
