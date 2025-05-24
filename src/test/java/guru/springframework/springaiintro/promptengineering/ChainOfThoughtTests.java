@@ -16,7 +16,6 @@ class ChainOfThoughtTests extends BaseTest {
                 How many tennis balls does Roger have now?
                 """;
 
-        // models previously would answer 27
         chat(prompt);
     }
 
@@ -27,7 +26,6 @@ class ChainOfThoughtTests extends BaseTest {
                 How many tennis balls does Roger have now? Answer in 1 word.
                 """;
 
-        // models previously would answer 27
         chat(prompt);
     }
 

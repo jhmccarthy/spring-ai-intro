@@ -77,6 +77,31 @@ a configuration property named `ai-app.api-ninjas-key` that you should set to th
 export API_NINJAS_KEY=<INSERT KEY HERE>
 ```
 
+## Testing the Chatbot
+
+You can test the API by using [Postman][]. Postman is the single platform for designing, building, and scaling APIs.
+
+Once Postman is installed, follow these steps to use the API.
+
+1. Export the environment variables needed by the application to access the LLMs and API Ninjas.
+
+```bash
+export ANTHROPIC_API_KEY=<Anthropic Key>
+export API_NINJAS_KEY=<API Ninjas Key>
+export OPENAI_API_KEY=<OPEN API Key>
+```
+
+2. Start the application by running `mvn` from a command prompt.
+
+3. In Postman, create a POST request with a URL of `http://localhost:8080/chat`. The body of the request should contain the question to ask the chatbot.
+
+```json
+{
+    "chatId": null,
+    "question": "There are 3 killers in a room. Someone enters the room and kills one of them. How many killers are left in the room?"
+}
+```
+
 [anthropic]: https://console.anthropic.com/dashboard
 
 [anthropic-api-keys]: https://console.anthropic.com/settings/keys
@@ -104,3 +129,4 @@ export API_NINJAS_KEY=<INSERT KEY HERE>
 [api-ninjas-register]: https://api-ninjas.com/register
 
 [api-ninjas-country]: https://api-ninjas.com/api/country
+[postman]: https://www.postman.com/

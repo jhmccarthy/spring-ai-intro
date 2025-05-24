@@ -17,8 +17,21 @@ public class ChatClientConfig {
         this.chatMemory = chatMemory;
     }
 
-    @Bean
+    @Bean(name = "chatClient")
     public ChatClient chatClient(
+            ChatModel chatModel
+    ) {
+        // @formatter:off
+        var client = ChatClient
+                .builder(chatModel)
+                .defaultAdvisors(MessageChatMemoryAdvisor.builder(chatMemory).build());
+        // @formatter:on
+
+        return client.build();
+    }
+
+    @Bean(name = "chatClientWithPersonality", defaultCandidate = false)
+    public ChatClient chatClientWithPersonality(
             ChatModel chatModel,
             @Value("classpath:prompts/chatbot-system-prompt.st") Resource systemPrompt
     ) {

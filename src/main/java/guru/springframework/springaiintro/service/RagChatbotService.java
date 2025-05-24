@@ -9,6 +9,7 @@ import org.springframework.ai.document.Document;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.SimpleVectorStore;
 import org.springframework.ai.vectorstore.VectorStore;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -26,7 +27,7 @@ public class RagChatbotService {
     private final Resource ragPrompt;
 
     public RagChatbotService(
-            ChatClient chatClient,
+            @Qualifier("chatClient") ChatClient chatClient,
             SimpleVectorStore vectorStore,
             @Value("classpath:prompts/rag-meta-prompt.st") Resource ragPrompt
     ) {

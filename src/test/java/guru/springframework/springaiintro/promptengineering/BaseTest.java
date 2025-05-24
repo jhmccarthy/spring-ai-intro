@@ -5,12 +5,14 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 @Slf4j
 class BaseTest {
     @Autowired
+    @Qualifier("chatClientWithPersonality")
     protected ChatClient chatClient;
 
     protected String chat(String prompt) {

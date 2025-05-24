@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.tool.function.FunctionToolCallback;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,7 @@ public class ChatbotFunctionService {
     private final String apiNinjasKey = System.getenv("API_NINJAS_KEY");
 
     public ChatbotFunctionService(
-            ChatClient chatClient
+            @Qualifier("chatClient") ChatClient chatClient
     ) {
         this.chatClient = chatClient;
     }

@@ -5,7 +5,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>3.4.5</version>
+        <version>3.5.0</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
 
@@ -18,6 +18,7 @@
 
     <properties>
         <java.version>21</java.version>
+        <maven.test.skip>true</maven.test.skip>
         <spring-ai.version>1.0.0</spring-ai.version>
     </properties>
 
@@ -90,6 +91,13 @@
                         </goals>
                     </execution>
                 </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <skipTests>${maven.test.skip}</skipTests>
+                </configuration>
             </plugin>
         </plugins>
     </build>

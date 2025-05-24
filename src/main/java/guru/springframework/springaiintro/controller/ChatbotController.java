@@ -25,17 +25,17 @@ public class ChatbotController {
         this.chatbotFunctionService = chatbotFunctionService;
     }
 
-    @PostMapping("/api/request")
+    @PostMapping("/chat")
     public ChatResponse chat(@RequestBody ChatRequest chatRequest) {
         return chatbotService.chat(chatRequest);
     }
 
-    @PostMapping("/api/rag-request")
+    @PostMapping("/rag-chat")
     public ChatResponse ragChat(@RequestBody ChatRequest chatRequest) {
         return ragChatbotService.ragChat(chatRequest);
     }
 
-    @PostMapping("/api/country")
+    @PostMapping("/country")
     public ChatResponse getCountry(@RequestBody ChatRequest chatRequest) {
         return chatbotFunctionService.chat(chatRequest);
     }

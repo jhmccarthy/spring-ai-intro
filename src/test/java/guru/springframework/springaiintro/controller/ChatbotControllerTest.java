@@ -20,7 +20,7 @@ class ChatbotControllerTest {
     void chat() throws Exception {
         var question = "{ \"question\": \"A question for\"}";
 
-        mvc.perform(post("/api/request")
+        mvc.perform(post("/request")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(question))
                 .andExpect(status().isOk());
@@ -30,7 +30,7 @@ class ChatbotControllerTest {
     void ragChat() throws Exception {
         var question = "{ \"question\": \"A question for\"}";
 
-        mvc.perform(post("/api/rag-request")
+        mvc.perform(post("/rag-request")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(question))
                 .andExpect(status().isOk());
@@ -40,7 +40,7 @@ class ChatbotControllerTest {
     void getCountry() throws Exception {
         var question = "{ \"question\": \"A question for\"}";
 
-        mvc.perform(post("/api/country")
+        mvc.perform(post("/country")
                         .contentType(MediaType.APPLICATION_JSON)
                         .content(question))
                 .andExpect(status().isOk());

@@ -9,6 +9,7 @@ import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.prompt.Prompt;
 import org.springframework.ai.chat.prompt.PromptTemplate;
 import org.springframework.ai.converter.BeanOutputConverter;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.core.io.Resource;
 import org.springframework.stereotype.Service;
@@ -24,7 +25,7 @@ public class ChatbotService {
     private final Resource getCapitalPrompt;
 
     public ChatbotService(
-            ChatClient chatClient,
+            @Qualifier("chatClientWithPersonality") ChatClient chatClient,
             @Value("classpath:prompts/get-capital-prompt.st") Resource getCapitalPrompt
     ) {
         this.chatClient = chatClient;
