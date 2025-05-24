@@ -1,0 +1,23 @@
+repos:
+- repo: https://github.com/pre-commit/pre-commit-hooks
+  rev: v4.6.0
+  hooks:
+  - id: check-case-conflict
+  - id: check-yaml
+  - id: end-of-file-fixer
+  - id: detect-aws-credentials
+  - id: detect-private-key
+- repo: https://github.com/executablebooks/mdformat
+  rev: 0.7.17
+  hooks:
+  - id: mdformat
+- repo: https://github.com/macisamuele/language-formatters-pre-commit-hooks
+  rev: v2.14.0
+  hooks:
+  - id: pretty-format-yaml
+    args: [--autofix]
+- repo: https://github.com/sirosen/check-jsonschema
+  rev: 0.29.2
+  hooks:
+  - id: check-github-actions
+  - id: check-github-workflows

@@ -35,5 +35,5 @@ ai-app:
   vectorStorePath: /temp/vectorStore.json
   # the trimmed csv file removed a lot of extra fields to refine the search criteria
   documentsToLoad:
-    - classpath:/movies500Trimmed.csv
+    - classpath:/movies500.csv
   api-ninjas-key: ${API_NINJAS_KEY}

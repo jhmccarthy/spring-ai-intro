@@ -1,10 +1,21 @@
-# Introduction to Spring AI
+# Spring AI
 
-This repository contains source code examples used to support my on-line courses about the Spring Framework.
+This project contains examples of using [Spring AI][spring-ai] to work with Large Language Models (LLM).
+
+The Spring AI project aims to streamline the development of applications that incorporate artificial intelligence
+functionality without unnecessary complexity.
+
+Spring AI provides abstractions that serve as the foundation for developing AI applications. These abstractions have
+multiple implementations, enabling easy component swapping with minimal code changes.
+
+This project uses these Spring components.
+
+* Spring AI, 1.0.0
+* Spring Boot, 3.5.0
 
 ## LLM Models
 
-The following LLM and embedding models have been tested.
+The following LLMs and embedding models have been tested.
 
 | Vendor    | LLM Model                                    | Embedding Model          |
 |-----------|----------------------------------------------|--------------------------|
@@ -64,7 +75,35 @@ This is an abbreviated list of the [Ollama CLI commands][ollama-cli-reference].
 | List which models are currently loaded  | `ollama ps`            |
 | Stop a model which is currently running | `ollama stop llama3.2` |
 
-## Spring AI Functions
+## Tool Calling
+
+Tool calling (also known as function calling) is a common pattern in AI applications allowing a model to interact with a
+set of APIs, or tools, augmenting its capabilities.
+
+Tools are mainly used for:
+
+* **Information Retrieval**. Tools in this category can be used to retrieve information from external sources, such as a
+  database, a web service, a file system, or a web search engine. The goal is to augment the knowledge of the model,
+  allowing it to answer questions that it would not be able to answer otherwise. As such, they can be used in Retrieval
+  Augmented Generation (RAG) scenarios.
+* **Taking Action**. Tools in this category can be used to take action in a software system, such as sending an email,
+  creating a new record in a database, submitting a form, or triggering a workflow. The goal is to automate tasks that
+  would otherwise require human intervention or explicit programming.
+
+### Methods as Tools
+
+Spring AI provides built-in support for specifying tools (i.e. `ToolCallback`(s)) from methods in two ways:
+
+* declaratively, using the `@Tool` annotation
+* programmatically, using the low-level `MethodToolCallback` implementation.
+
+This project uses the declarative approach to allow the model to determine the current date and time in the user’s time
+zone and set an alarm via a logging message.
+
+### Functions as Tools
+
+Spring AI provides built-in support for specifying tools from functions, either programmatically using the low-level
+`FunctionToolCallback` implementation or dynamically as `@Bean`(s) resolved at runtime.
 
 This project uses the [API Ninjas][api-ninjas] [Country API][api-ninjas-country] to define a callback function used by
 the chatbot.
@@ -93,14 +132,17 @@ export OPENAI_API_KEY=<OPEN API Key>
 
 2. Start the application by running `mvn` from a command prompt.
 
-3. In Postman, create a POST request with a URL of `http://localhost:8080/chat`. The body of the request should contain the question to ask the chatbot.
+3. In Postman, create a POST request with a URL of `http://localhost:8080/chat`. The body of the request should contain
+   the question to ask the chatbot.
 
 ```json
 {
-    "chatId": null,
-    "question": "There are 3 killers in a room. Someone enters the room and kills one of them. How many killers are left in the room?"
+  "chatId": null,
+  "question": "There are 3 killers in a room. Someone enters the room and kills one of them. How many killers are left in the room?"
 }
 ```
+
+[spring-ai]: https://docs.spring.io/spring-ai/reference/index.html
 
 [anthropic]: https://console.anthropic.com/dashboard
 
@@ -129,4 +171,5 @@ export OPENAI_API_KEY=<OPEN API Key>
 [api-ninjas-register]: https://api-ninjas.com/register
 
 [api-ninjas-country]: https://api-ninjas.com/api/country
+
 [postman]: https://www.postman.com/
