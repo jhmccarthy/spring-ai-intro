@@ -1,5 +1,6 @@
 package spring.demo.config;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.chat.client.advisor.MessageChatMemoryAdvisor;
 import org.springframework.ai.chat.memory.ChatMemory;
@@ -13,6 +14,7 @@ import org.springframework.core.io.Resource;
  * Configure the {@code ChatClient} that is used by the chatbot.
  */
 @Configuration
+@Slf4j
 public class ChatClientConfig {
     private final ChatMemory chatMemory;
 
