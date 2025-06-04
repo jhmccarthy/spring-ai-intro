@@ -3,7 +3,11 @@ target/
 !.mvn/wrapper/maven-wrapper.jar
 !**/src/main/**/target/
 !**/src/test/**/target/
+
+### Node.js ###
 node_modules
+package.json
+package-lock.json
 
 ### STS ###
 .apt_generated

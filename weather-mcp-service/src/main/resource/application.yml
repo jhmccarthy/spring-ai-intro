@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: weather-mcp-server
+  main:
+    banner-mode: off
+  ai:
+    mcp:
+      server:
+        enabled: true
+        name: weather-mcp-server
+        version: 1.0.0
+        type: SYNC  # or ASYNC for reactive applications
+        resource-change-notification: true
+        tool-change-notification: true
+
+server:
+  port: 8081
+
+ai-app:
+  api-ninjas-key: ${API_NINJAS_KEY}

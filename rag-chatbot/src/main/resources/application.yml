@@ -1,0 +1,23 @@
+spring:
+  application:
+    name: rag-chatbot
+  main:
+    banner-mode: off
+  ai:
+    model:
+      # These values must be one of the listed LLMs below
+      chat: openai
+    openai:
+      api-key: ${OPENAI_API_KEY}
+      chat:
+        options:
+          model: gpt-4o-mini
+      embedding:
+        options:
+          model: text-embedding-3-small
+
+ai-app:
+  vectorStorePath: /temp/vectorStore.json
+  # the trimmed csv file removed a lot of extra fields to refine the search criteria
+  documentsToLoad:
+  - classpath:/movies500.csv

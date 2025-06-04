@@ -1,0 +1,17 @@
+spring:
+  application:
+    name: basic-chatbot
+  main:
+    banner-mode: off
+  ai:
+    model:
+      # These values must be one of the listed LLMs below
+      chat: anthropic
+    anthropic:
+      api-key: ${ANTHROPIC_API_KEY}
+      chat:
+        options:
+          model: claude-3-7-sonnet-latest
+
+ai-app:
+  api-ninjas-key: ${API_NINJAS_KEY}

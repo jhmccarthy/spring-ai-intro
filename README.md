@@ -10,18 +10,18 @@ multiple implementations, enabling easy component swapping with minimal code cha
 
 This project uses these Spring components.
 
-* Spring AI, 1.0.0
-* Spring Boot, 3.5.0
+- Spring AI, 1.0.0
+- Spring Boot, 3.5.0
 
 ## LLM Models
 
 The following LLMs and embedding models have been tested.
 
-| Vendor    | LLM Model                                    | Embedding Model          |
+| Vendor | LLM Model | Embedding Model |
 |-----------|----------------------------------------------|--------------------------|
-| OpenAI    | [gpt-4o-mini]                                | [text-embedding-3-small] |
-| Anthropic | [claude-3-7-sonnet-latest][anthropic-models] |                          |
-| Ollama    | [ollama3.2]                                  | [nomic-embed-text]       |
+| OpenAI | [gpt-4o-mini] | [text-embedding-3-small] |
+| Anthropic | [claude-3-7-sonnet-latest][anthropic-models] | |
+| Ollama | [ollama3.2] | [nomic-embed-text] |
 
 *NOTE:* Spring AI doesn't have support for the Anthropic embedding model. You can use either the OpenAI or Ollama's
 embedding model.
@@ -68,13 +68,13 @@ By default, the Ollama API will be served on http://localhost:11434.
 
 This is an abbreviated list of the [Ollama CLI commands][ollama-cli-reference].
 
-| Description                             | Command                |
+| Description | Command |
 |-----------------------------------------|------------------------|
-| Pull a model                            | `ollama pull llama3.2` |
-| Remove a model                          | `ollama rm llama3.2`   |
-| Show model information                  | `ollama show llama3.2` |
-| List models on your computer            | `ollama list`          |
-| List which models are currently loaded  | `ollama ps`            |
+| Pull a model | `ollama pull llama3.2` |
+| Remove a model | `ollama rm llama3.2` |
+| Show model information | `ollama show llama3.2` |
+| List models on your computer | `ollama list` |
+| List which models are currently loaded | `ollama ps` |
 | Stop a model which is currently running | `ollama stop llama3.2` |
 
 ## Tool Calling
@@ -84,11 +84,11 @@ set of APIs, or tools, augmenting its capabilities.
 
 Tools are mainly used for:
 
-* **Information Retrieval**. Tools in this category can be used to retrieve information from external sources, such as a
+- **Information Retrieval**. Tools in this category can be used to retrieve information from external sources, such as a
   database, a web service, a file system, or a web search engine. The goal is to augment the knowledge of the model,
   allowing it to answer questions that it would not be able to answer otherwise. As such, they can be used in Retrieval
   Augmented Generation (RAG) scenarios.
-* **Taking Action**. Tools in this category can be used to take action in a software system, such as sending an email,
+- **Taking Action**. Tools in this category can be used to take action in a software system, such as sending an email,
   creating a new record in a database, submitting a form, or triggering a workflow. The goal is to automate tasks that
   would otherwise require human intervention or explicit programming.
 
@@ -96,8 +96,8 @@ Tools are mainly used for:
 
 Spring AI provides built-in support for specifying tools (i.e. `ToolCallback`(s)) from methods in two ways:
 
-* declaratively, using the `@Tool` annotation
-* programmatically, using the low-level `MethodToolCallback` implementation.
+- declaratively, using the `@Tool` annotation
+- programmatically, using the low-level `MethodToolCallback` implementation.
 
 This project uses the declarative approach to allow the model to determine the current date and time in the user’s time
 zone and set an alarm via a logging message.
@@ -157,19 +157,19 @@ clients. It implements the server side of the protocol.
 
 ## Testing the Chatbot
 
-You can test the API by using [Postman][]. Postman is the single platform for designing, building, and scaling APIs.
+You can test the API by using [Postman]. Postman is the single platform for designing, building, and scaling APIs.
 
 Once Postman is installed, follow these steps to use the API.
 
 1. Export the environment variables needed by the application to access the LLMs and API Ninjas.
-    ```bash
-    export ANTHROPIC_API_KEY=<Anthropic Key>
-    export API_NINJAS_KEY=<API Ninjas Key>
-    export BRAVE_API_KEY=<Brave Search API Key>
-    export OPENAI_API_KEY=<OPEN API Key>
-    ```
-2. Start the application by running `mvn` from a command prompt.
-3. In Postman, create a POST request with a URL of `http://localhost:8080/chat`. The body of the request should contain
+   ```bash
+   export ANTHROPIC_API_KEY=<Anthropic Key>
+   export API_NINJAS_KEY=<API Ninjas Key>
+   export BRAVE_API_KEY=<Brave Search API Key>
+   export OPENAI_API_KEY=<OPEN API Key>
+   ```
+1. Start the application by running `mvn` from a command prompt.
+1. In Postman, create a POST request with a URL of `http://localhost:8080/chat`. The body of the request should contain
    the question to ask the chatbot.
 
 ```json
@@ -179,42 +179,23 @@ Once Postman is installed, follow these steps to use the API.
 }
 ```
 
-[spring-ai]: https://docs.spring.io/spring-ai/reference/index.html
-
 [anthropic]: https://console.anthropic.com/dashboard
-
 [anthropic-api-keys]: https://console.anthropic.com/settings/keys
-
 [anthropic-models]: https://docs.anthropic.com/en/docs/about-claude/models/all-models
-
-[openai]: https://platform.openai.com/signup
-
-[openai-api-keys]: https://platform.openai.com/account/api-keys
-
-[gpt-4o-mini]: https://platform.openai.com/docs/models/gpt-4o-mini
-
-[text-embedding-3-small]: https://platform.openai.com/docs/models/text-embedding-3-small
-
-[ollama]: https://ollama.com/download
-
-[ollama-cli-reference]: https://github.com/ollama/ollama?tab=readme-ov-file#cli-reference
-
-[ollama3.2]: https://ollama.com/library/llama3.2
-
-[nomic-embed-text]: https://ollama.com/library/nomic-embed-text
-
 [api-ninjas]: https://api-ninjas.com/
-
-[api-ninjas-register]: https://api-ninjas.com/register
-
 [api-ninjas-country]: https://api-ninjas.com/api/country
-
-[postman]: https://www.postman.com/
-
-[mcp]: https://modelcontextprotocol.org/docs/concepts/architecture
-
-[brave-search-mcp]: https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search
-
+[api-ninjas-register]: https://api-ninjas.com/register
 [brave-search-api]: https://brave.com/search/api/
-
+[brave-search-mcp]: https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search
+[gpt-4o-mini]: https://platform.openai.com/docs/models/gpt-4o-mini
+[mcp]: https://modelcontextprotocol.org/docs/concepts/architecture
 [node-js-download]: https://nodejs.org/en/download/
+[nomic-embed-text]: https://ollama.com/library/nomic-embed-text
+[ollama]: https://ollama.com/download
+[ollama-cli-reference]: https://github.com/ollama/ollama?tab=readme-ov-file#cli-reference
+[ollama3.2]: https://ollama.com/library/llama3.2
+[openai]: https://platform.openai.com/signup
+[openai-api-keys]: https://platform.openai.com/account/api-keys
+[postman]: https://www.postman.com/
+[spring-ai]: https://docs.spring.io/spring-ai/reference/index.html
+[text-embedding-3-small]: https://platform.openai.com/docs/models/text-embedding-3-small
