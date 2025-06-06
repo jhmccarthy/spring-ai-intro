@@ -7,7 +7,7 @@ to test.
 
 ## LLM Models
 
-The following LLMs have been tested.
+The following LLMs are used in this project.
 
 | Vendor | LLM Model |
 |-----------|----------------------------------------------|

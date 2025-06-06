@@ -11,6 +11,9 @@ import java.time.Instant;
 import java.time.LocalDateTime;
 import java.util.TimeZone;
 
+/**
+ * This tool uses the API Ninjas' Weather API to get the current weather for a given latitude and longitude coordinate.
+ */
 @Service
 @Slf4j
 public class WeatherTool {
@@ -59,8 +62,6 @@ public class WeatherTool {
             log.error("Weather API response is null");
             return null;
         }
-
-        log.info("Weather API response: {}", response);
 
         var forecast = String.format("""
                         Temperature: %s

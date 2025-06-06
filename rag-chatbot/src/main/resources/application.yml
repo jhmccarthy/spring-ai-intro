@@ -17,7 +17,7 @@ spring:
           model: text-embedding-3-small
 
 ai-app:
-  vectorStorePath: /temp/vectorStore.json
+  vectorStorePath: ./vectorStore.json
   # the trimmed csv file removed a lot of extra fields to refine the search criteria
   documentsToLoad:
   - classpath:/movies500.csv
