@@ -58,6 +58,8 @@ is to install `Node.js` from the [Node.js download page][node-js-download].
 The MCP Server is a foundational component in the MCP architecture that provides tools, resources, and capabilities to
 clients. It implements the server side of the protocol.
 
+This [blog][piotr-tech-blog] provides a great example of how to create an MCP Server.
+
 ## Testing the Chatbot
 
 You can test the API by using [Postman]. Postman is the single platform for designing, building, and scaling APIs.
@@ -100,4 +102,5 @@ To test the MCP server implementation, use this query:
 [brave-search-mcp]: https://github.com/modelcontextprotocol/servers/tree/main/src/brave-search
 [mcp]: https://modelcontextprotocol.org/docs/concepts/architecture
 [node-js-download]: https://nodejs.org/en/download/
+[piotr-tech-blog]: https://piotrminkowski.com/2025/03/17/using-model-context-protocol-mcp-with-spring-ai/
 [postman]: https://www.postman.com/
